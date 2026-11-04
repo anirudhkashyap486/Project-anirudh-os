@@ -42,6 +42,177 @@
     input {
       width: 100%;
       padding: 13px;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Anirudh OS</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #090d12;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .header {
+      margin: 20px 0 30px;
+    }
+
+    .header p {
+      color: #9ca3af;
+    }
+
+    .card {
+      background: #151d27;
+      border: 1px solid #293746;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .green {
+      color: #4ade80;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      margin: 8px 0 15px;
+      border-radius: 9px;
+      border: 1px solid #374151;
+      background: #0d141d;
+      color: white;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #16a34a;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .progress {
+      height: 10px;
+      background: #374151;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    #bar {
+      height: 10px;
+      width: 0%;
+      background: #4ade80;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>ANIRUDH OS ⚡</h1>
+    <p>Your Personal Life Management System</p>
+  </div>
+
+  <div class="card">
+    <p>DAILY EARNING TARGET</p>
+    <h1 class="green">₹800</h1>
+    <div class="progress">
+      <div id="bar"></div>
+    </div>
+    <p id="progressText">0% completed</p>
+  </div>
+
+  <div class="card">
+    <h2>💰 Blinkit Business</h2>
+
+    <label>Today's earning (₹)</label>
+    <input type="number" id="earning" placeholder="Enter earning">
+
+    <label>Today's expenses (₹)</label>
+    <input type="number" id="expense" placeholder="Enter expenses">
+
+    <button onclick="saveData()">Save Daily Report</button>
+
+    <h3 id="net">Net Profit: ₹0</h3>
+  </div>
+
+  <div class="card">
+    <h2>📚 SSC Preparation</h2>
+    <label>Study hours today</label>
+    <input type="number" id="study" placeholder="Enter study hours">
+  </div>
+
+  <div class="card">
+    <h2>🏋️ Fitness</h2>
+    <label>Workout completed?</label>
+    <input type="checkbox" id="workout">
+  </div>
+
+  <div class="card">
+    <h2>🚀 Daily Mission</h2>
+    <p>Earn. Study. Train. Improve.</p>
+    <p class="green">One day better than yesterday.</p>
+  </div>
+
+  <script>
+    function saveData() {
+      const earning =
+        Number(document.getElementById("earning").value) || 0;
+
+      const expense =
+        Number(document.getElementById("expense").value) || 0;
+
+      const study =
+        Number(document.getElementById("study").value) || 0;
+
+      const workout =
+        document.getElementById("workout").checked;
+
+      const net = earning - expense;
+      const progress = Math.min(100, earning / 800 * 100);
+
+      document.getElementById("net").innerText =
+        "Net Profit: ₹" + net;
+
+      document.getElementById("bar").style.width =
+        progress + "%";
+
+      document.getElementById("progressText").innerText =
+        Math.round(progress) + "% completed";
+
+      const report = {
+        earning,
+        expense,
+        study,
+        workout,
+        net,
+        date: new Date().toLocaleDateString()
+      };
+
+      localStorage.setItem(
+        "anirudhDailyReport",
+        JSON.stringify(report)
+      );
+
+      alert("Daily report saved successfully!");
+    }
+  </script>
+
+</body>
+</html>
       margin: 8px 0 15px;
       border-radius: 9px;
       border: 1px solid #374151;
