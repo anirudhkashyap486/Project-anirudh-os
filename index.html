@@ -2,342 +2,435 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Anirudh OS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d12">
+<title>ANIRUDH OS</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 20px;
-      background: #090d12;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-
-    .header {
-      margin: 20px 0 30px;
-    }
-
-    .header p {
-      color: #9ca3af;
-    }
-
-    .card {
-      background: #151d27;
-      border: 1px solid #293746;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 16px;
-    }
-
-    .green {
-      color: #4ade80;
-    }
-
-    input {
-      width: 100%;
-      padding: 13px;
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Anirudh OS</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 20px;
-      background: #090d12;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-
-    .header {
-      margin: 20px 0 30px;
-    }
-
-    .header p {
-      color: #9ca3af;
-    }
-
-    .card {
-      background: #151d27;
-      border: 1px solid #293746;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 16px;
-    }
-
-    .green {
-      color: #4ade80;
-    }
-
-    input {
-      width: 100%;
-      padding: 13px;
-      margin: 8px 0 15px;
-      border-radius: 9px;
-      border: 1px solid #374151;
-      background: #0d141d;
-      color: white;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: #16a34a;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-    .progress {
-      height: 10px;
-      background: #374151;
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    #bar {
-      height: 10px;
-      width: 0%;
-      background: #4ade80;
-    }
-  </style>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;padding:18px;
+ background:#090d12;color:#f8fafc;
+ font-family:Arial,sans-serif
+}
+header{padding:12px 0 20px}
+header h1{font-size:28px;margin:10px 0}
+.muted{color:#94a3b8}
+.green{color:#4ade80}
+.card{
+ background:#151d27;border:1px solid #293746;
+ border-radius:17px;padding:18px;margin-bottom:16px
+}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:#0d141d;padding:14px;border-radius:12px}
+.stat h2{margin:8px 0}
+.nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+button{
+ padding:12px;border:0;border-radius:9px;
+ background:#16a34a;color:white;font-weight:bold;
+ font-size:14px;cursor:pointer
+}
+.nav button{flex:1;min-width:60px}
+.secondary{background:#334155}
+.full{width:100%}
+input{
+ width:100%;padding:13px;margin:8px 0 15px;
+ border-radius:9px;border:1px solid #374151;
+ background:#0d141d;color:white;font-size:16px
+}
+input[type=checkbox]{width:auto}
+label{font-size:14px;color:#cbd5e1}
+.section{display:none}
+.section.active{display:block}
+.progress{
+ height:10px;background:#374151;
+ border-radius:20px;overflow:hidden
+}
+.bar{height:100%;background:#4ade80;width:0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{
+ text-align:left;padding:10px 5px;
+ border-bottom:1px solid #374151
+}
+.small{font-size:12px;color:#94a3b8}
+</style>
 </head>
 
 <body>
 
-  <div class="header">
-    <h1>ANIRUDH OS ⚡</h1>
-    <p>Your Personal Life Management System</p>
-  </div>
+<header>
+<p class="green">PERSONAL OPERATING SYSTEM</p>
+<h1>ANIRUDH OS ⚡</h1>
+<p class="muted">Earn. Learn. Train. Grow.</p>
+<p id="today" class="small"></p>
+</header>
 
-  <div class="card">
-    <p>DAILY EARNING TARGET</p>
-    <h1 class="green">₹800</h1>
-    <div class="progress">
-      <div id="bar"></div>
-    </div>
-    <p id="progressText">0% completed</p>
-  </div>
+<div class="nav">
+<button onclick="show('home')">Home</button>
+<button class="secondary" onclick="show('business')">Business</button>
+<button class="secondary" onclick="show('study')">SSC</button>
+<button class="secondary" onclick="show('fitness')">Fitness</button>
+<button class="secondary" onclick="show('backup')">Backup</button>
+</div>
 
-  <div class="card">
-    <h2>💰 Blinkit Business</h2>
+<section id="home" class="section active">
+<div class="card">
+<p class="muted">DAILY EARNING TARGET</p>
+<h1 class="green">₹800</h1>
+<div class="progress"><div id="todayBar" class="bar"></div></div>
+<p id="todayProgress">₹0 / ₹800</p>
+</div>
 
-    <label>Today's earning (₹)</label>
-    <input type="number" id="earning" placeholder="Enter earning">
+<div class="grid">
+<div class="stat">
+<p class="small">MONTHLY GROSS</p>
+<h2 id="monthly">₹0</h2>
+</div>
+<div class="stat">
+<p class="small">MONTHLY NET</p>
+<h2 id="monthlyNet">₹0</h2>
+</div>
+<div class="stat">
+<p class="small">WEEKLY EARNING</p>
+<h2 id="weekly">₹0</h2>
+</div>
+<div class="stat">
+<p class="small">STUDY HOURS</p>
+<h2 id="studyTotal">0</h2>
+</div>
+</div>
 
-    <label>Today's expenses (₹)</label>
-    <input type="number" id="expense" placeholder="Enter expenses">
+<div class="card">
+<h3>Monthly Goal ₹20,800</h3>
+<div class="progress"><div id="monthBar" class="bar"></div></div>
+<p id="monthProgress" class="small">0% completed</p>
+</div>
 
-    <button onclick="saveData()">Save Daily Report</button>
+<div class="card">
+<h3>Recent Activity</h3>
+<div id="recent" class="muted">No entries yet.</div>
+</div>
+</section>
 
-    <h3 id="net">Net Profit: ₹0</h3>
-  </div>
+<section id="business" class="section">
+<div class="card">
+<h2>💰 Blinkit Business</h2>
+<label>Date</label>
+<input type="date" id="date">
 
-  <div class="card">
-    <h2>📚 SSC Preparation</h2>
-    <label>Study hours today</label>
-    <input type="number" id="study" placeholder="Enter study hours">
-  </div>
+<label>Today's earning (₹)</label>
+<input type="number" id="earning" min="0" placeholder="800">
 
-  <div class="card">
-    <h2>🏋️ Fitness</h2>
-    <label>Workout completed?</label>
-    <input type="checkbox" id="workout">
-  </div>
+<label>Today's expenses (₹)</label>
+<input type="number" id="expense" min="0" placeholder="100">
 
-  <div class="card">
-    <h2>🚀 Daily Mission</h2>
-    <p>Earn. Study. Train. Improve.</p>
-    <p class="green">One day better than yesterday.</p>
-  </div>
+<button class="full" onclick="saveBusiness()">Save Daily Report</button>
+<h3 id="profit" class="green">Net Profit: ₹0</h3>
+</div>
 
-  <script>
-    function saveData() {
-      const earning =
-        Number(document.getElementById("earning").value) || 0;
+<div class="card">
+<h3>📊 Earning History</h3>
+<div style="overflow-x:auto">
+<table>
+<thead>
+<tr><th>Date</th><th>Earned</th><th>Expense</th><th>Net</th></tr>
+</thead>
+<tbody id="history"></tbody>
+</table>
+</div>
+</div>
+</section>
 
-      const expense =
-        Number(document.getElementById("expense").value) || 0;
+<section id="study" class="section">
+<div class="card">
+<h2>📚 SSC Preparation</h2>
+<label>Date</label>
+<input type="date" id="studyDate">
 
-      const study =
-        Number(document.getElementById("study").value) || 0;
+<label>Maths hours</label>
+<input type="number" id="maths" min="0" step="0.5">
 
-      const workout =
-        document.getElementById("workout").checked;
+<label>Reasoning hours</label>
+<input type="number" id="reasoning" min="0" step="0.5">
 
-      const net = earning - expense;
-      const progress = Math.min(100, earning / 800 * 100);
+<label>English hours</label>
+<input type="number" id="english" min="0" step="0.5">
 
-      document.getElementById("net").innerText =
-        "Net Profit: ₹" + net;
+<label>GS hours</label>
+<input type="number" id="gs" min="0" step="0.5">
 
-      document.getElementById("bar").style.width =
-        progress + "%";
+<button class="full" onclick="saveStudy()">Save Study Report</button>
+<h3 id="studyResult" class="green">Total: 0 hours</h3>
+</div>
+</section>
 
-      document.getElementById("progressText").innerText =
-        Math.round(progress) + "% completed";
+<section id="fitness" class="section">
+<div class="card">
+<h2>🏋️ Fitness Tracker</h2>
+<label>Date</label>
+<input type="date" id="fitnessDate">
 
-      const report = {
-        earning,
-        expense,
-        study,
-        workout,
-        net,
-        date: new Date().toLocaleDateString()
-      };
+<label>Weight (kg)</label>
+<input type="number" id="weight" step="0.1">
 
-      localStorage.setItem(
-        "anirudhDailyReport",
-        JSON.stringify(report)
-      );
+<label>Sleep (hours)</label>
+<input type="number" id="sleep" step="0.5">
 
-      alert("Daily report saved successfully!");
-    }
-  </script>
+<label>Steps</label>
+<input type="number" id="steps">
 
-</body>
-</html>
-      margin: 8px 0 15px;
-      border-radius: 9px;
-      border: 1px solid #374151;
-      background: #0d141d;
-      color: white;
-      font-size: 16px;
-    }
+<p><input type="checkbox" id="workout"> Workout completed</p>
+<p><input type="checkbox" id="running"> Running completed</p>
 
-    button {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: #16a34a;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-    }
+<button class="full" onclick="saveFitness()">Save Fitness Report</button>
+</div>
+</section>
 
-    .progress {
-      height: 10px;
-      background: #374151;
-      border-radius: 20px;
-      overflow: hidden;
-    }
+<section id="backup" class="section">
+<div class="card">
+<h2>💾 Data Backup</h2>
+<p class="muted">Download your records and restore them later.</p>
 
-    #bar {
-      height: 10px;
-      width: 0%;
-      background: #4ade80;
-    }
-  </style>
-</head>
+<button class="full" onclick="backup()">Download JSON Backup</button>
+<br><br>
 
-<body>
+<label>Select backup file</label>
+<input type="file" id="restoreFile" accept=".json">
 
-  <div class="header">
-    <h1>ANIRUDH OS ⚡</h1>
-    <p>Your Personal Life Management System</p>
-  </div>
+<button class="full secondary" onclick="restore()">Restore Data</button>
+<p class="small">Keep your backup file private.</p>
+</div>
+</section>
 
-  <div class="card">
-    <p>DAILY EARNING TARGET</p>
-    <h1 class="green">₹800</h1>
-    <div class="progress">
-      <div id="bar"></div>
-    </div>
-    <p id="progressText">0% completed</p>
-  </div>
+<script>
+const KEY="anirudhOS_v2";
 
-  <div class="card">
-    <h2>💰 Blinkit Business</h2>
+function emptyDB(){
+ return {business:[],study:[],fitness:[]};
+}
 
-    <label>Today's earning (₹)</label>
-    <input type="number" id="earning" placeholder="Enter earning">
+let db;
+try{
+ db=JSON.parse(localStorage.getItem(KEY))||emptyDB();
+ if(!Array.isArray(db.business)||
+ !Array.isArray(db.study)||
+ !Array.isArray(db.fitness))throw Error();
+}catch(e){
+ db=emptyDB();
+}
 
-    <label>Today's expenses (₹)</label>
-    <input type="number" id="expense" placeholder="Enter expenses">
+function localDate(){
+ const d=new Date();
+ return d.getFullYear()+"-"+
+ String(d.getMonth()+1).padStart(2,"0")+"-"+
+ String(d.getDate()).padStart(2,"0");
+}
 
-    <button onclick="saveData()">Save Daily Report</button>
+const today=localDate();
 
-    <h3 id="net">Net Profit: ₹0</h3>
-  </div>
+document.getElementById("today").textContent=
+ new Date().toDateString();
 
-  <div class="card">
-    <h2>📚 SSC Preparation</h2>
-    <label>Study hours today</label>
-    <input type="number" id="study" placeholder="Enter study hours">
-  </div>
+["date","studyDate","fitnessDate"].forEach(id=>{
+ document.getElementById(id).value=today;
+});
 
-  <div class="card">
-    <h2>🏋️ Fitness</h2>
-    <label>Workout completed?</label>
-    <input type="checkbox" id="workout">
-  </div>
+function persist(){
+ localStorage.setItem(KEY,JSON.stringify(db));
+ render();
+}
 
-  <div class="card">
-    <h2>🚀 Daily Mission</h2>
-    <p>Earn. Study. Train. Improve.</p>
-    <p class="green">One day better than yesterday.</p>
-  </div>
+function show(id){
+ document.querySelectorAll(".section").forEach(s=>{
+  s.classList.remove("active");
+ });
+ document.getElementById(id).classList.add("active");
+ render();
+}
 
-  <script>
-    function saveData() {
-      const earning =
-        Number(document.getElementById("earning").value) || 0;
+function upsert(list,item){
+ const i=list.findIndex(x=>x.date===item.date);
+ if(i>=0)list[i]=item;
+ else list.push(item);
+ list.sort((a,b)=>b.date.localeCompare(a.date));
+}
 
-      const expense =
-        Number(document.getElementById("expense").value) || 0;
+function saveBusiness(){
+ const date=document.getElementById("date").value;
+ const earning=Number(document.getElementById("earning").value)||0;
+ const expense=Number(document.getElementById("expense").value)||0;
 
-      const study =
-        Number(document.getElementById("study").value) || 0;
+ if(!date||earning<0||expense<0){
+  alert("Check date and amounts");
+  return;
+ }
 
-      const workout =
-        document.getElementById("workout").checked;
+ upsert(db.business,{
+  date,earning,expense,net:earning-expense
+ });
 
-      const net = earning - expense;
-      const progress = Math.min(100, earning / 800 * 100);
+ document.getElementById("profit").textContent=
+  "Net Profit: ₹"+(earning-expense);
 
-      document.getElementById("net").innerText =
-        "Net Profit: ₹" + net;
+ persist();
+ alert("Business report saved!");
+}
 
-      document.getElementById("bar").style.width =
-        progress + "%";
+function saveStudy(){
+ const date=document.getElementById("studyDate").value;
+ if(!date){alert("Select date");return;}
 
-      document.getElementById("progressText").innerText =
-        Math.round(progress) + "% completed";
+ const hours={};
 
-      const report = {
-        earning,
-        expense,
-        study,
-        workout,
-        net,
-        date: new Date().toLocaleDateString()
-      };
+ ["maths","reasoning","english","gs"].forEach(k=>{
+  hours[k]=Number(document.getElementById(k).value)||0;
+ });
 
-      localStorage.setItem(
-        "anirudhDailyReport",
-        JSON.stringify(report)
-      );
+ if(Object.values(hours).some(x=>x<0)){
+  alert("Invalid study hours");
+  return;
+ }
 
-      alert("Daily report saved successfully!");
-    }
-  </script>
+ const total=Object.values(hours).reduce((a,b)=>a+b,0);
+
+ upsert(db.study,{date,...hours,total});
+
+ document.getElementById("studyResult").textContent=
+  "Total: "+total+" hours";
+
+ persist();
+ alert("Study report saved!");
+}
+
+function saveFitness(){
+ const date=document.getElementById("fitnessDate").value;
+ if(!date){alert("Select date");return;}
+
+ const item={
+  date,
+  weight:Number(document.getElementById("weight").value)||0,
+  sleep:Number(document.getElementById("sleep").value)||0,
+  steps:Number(document.getElementById("steps").value)||0,
+  workout:document.getElementById("workout").checked,
+  running:document.getElementById("running").checked
+ };
+
+ upsert(db.fitness,item);
+ persist();
+ alert("Fitness report saved!");
+}
+
+function render(){
+ const month=today.slice(0,7);
+
+ const monthRows=db.business.filter(x=>
+  x.date.startsWith(month)
+ );
+
+ const gross=monthRows.reduce((a,x)=>a+x.earning,0);
+ const net=monthRows.reduce((a,x)=>a+x.net,0);
+
+ const start=new Date();
+ start.setDate(start.getDate()-6);
+ start.setHours(0,0,0,0);
+
+ const week=db.business.filter(x=>{
+  const d=new Date(x.date+"T00:00:00");
+  return d>=start && x.date<=today;
+ });
+
+ const weekly=week.reduce((a,x)=>a+x.earning,0);
+
+ const todayRow=db.business.find(x=>x.date===today);
+ const earned=todayRow?todayRow.earning:0;
+
+ const studyTotal=db.study
+  .filter(x=>x.date.startsWith(month))
+  .reduce((a,x)=>a+x.total,0);
+
+ document.getElementById("monthly").textContent="₹"+gross;
+ document.getElementById("monthlyNet").textContent="₹"+net;
+ document.getElementById("weekly").textContent="₹"+weekly;
+ document.getElementById("studyTotal").textContent=studyTotal;
+
+ document.getElementById("todayBar").style.width=
+  Math.min(100,earned/800*100)+"%";
+
+ document.getElementById("todayProgress").textContent=
+  "₹"+earned+" / ₹800";
+
+ document.getElementById("monthBar").style.width=
+  Math.min(100,gross/20800*100)+"%";
+
+ document.getElementById("monthProgress").textContent=
+  Math.round(gross/20800*100)+"% completed";
+
+ document.getElementById("history").innerHTML=
+  db.business.map(x=>
+   `<tr><td>${x.date}</td><td>₹${x.earning}</td><td>₹${x.expense}</td><td>₹${x.net}</td></tr>`
+  ).join("");
+
+ document.getElementById("recent").textContent=
+  db.business.length?
+  db.business.slice(0,3).map(x=>
+   x.date+": ₹"+x.net+" net"
+  ).join(" | "):
+  "No entries yet.";
+}
+
+function backup(){
+ const blob=new Blob(
+  [JSON.stringify(db,null,2)],
+  {type:"application/json"}
+ );
+
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+
+ a.href=url;
+ a.download="anirudh-os-backup.json";
+ a.click();
+
+ URL.revokeObjectURL(url);
+}
+
+function restore(){
+ const file=document.getElementById("restoreFile").files[0];
+
+ if(!file){
+  alert("Select a backup file first");
+  return;
+ }
+
+ const reader=new FileReader();
+
+ reader.onload=()=>{
+  try{
+   const data=JSON.parse(reader.result);
+
+   if(!Array.isArray(data.business)||
+      !Array.isArray(data.study)||
+      !Array.isArray(data.fitness)){
+    throw Error();
+   }
+
+   if(!confirm("Replace current data with backup?"))return;
+
+   db=data;
+   persist();
+   alert("Backup restored successfully!");
+
+  }catch(e){
+   alert("Invalid backup file");
+  }
+ };
+
+ reader.readAsText(file);
+}
+
+render();
+</script>
 
 </body>
 </html>
