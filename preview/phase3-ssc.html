@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d12"><title>ANIRUDH OS — SSC Academy</title>
+<style>
+:root{color-scheme:dark;--bg:#080d12;--panel:#111a23;--panel2:#0c141c;--line:#243442;--muted:#91a2b4;--green:#39d98a;--text:#f4f7fa;--red:#ff7373}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}main{max-width:850px;margin:auto;padding:20px 15px 90px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0 18px}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:2px}h1{font-size:27px;margin:4px 0}h2{font-size:19px;margin:0 0 14px}h3{font-size:15px;margin:0 0 12px}.muted,.hint{color:var(--muted)}.hint{font-size:12px;line-height:1.5}.pill{border:1px solid var(--line);border-radius:99px;padding:7px 10px;color:var(--green);font-size:11px;white-space:nowrap}
+.tabs{display:flex;gap:8px;overflow:auto;padding:3px 0 13px;scrollbar-width:thin}.tabs button{white-space:nowrap;background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:10px 14px;color:var(--muted);font:inherit}.tabs button.active{background:var(--green);color:#062015;font-weight:800}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:18px;margin:0 0 14px}.hero{background:linear-gradient(135deg,#142b27,#101b25 65%);border-color:#285344}.hero strong{font-size:32px;display:block;margin:7px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.metric{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:16px;min-width:0}.metric b{display:block;font-size:25px;margin-top:7px}.label{font-size:11px;letter-spacing:1.2px;color:var(--muted);text-transform:uppercase}
+form{display:grid;gap:12px}label{display:grid;gap:6px;color:#cbd5df}input,select,textarea{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:13px;padding:14px;color:var(--text);font:inherit;min-height:48px}textarea{min-height:78px;resize:vertical}button.primary{background:var(--green);color:#062015;border:0;border-radius:13px;padding:14px;font:inherit;font-weight:800;width:100%}button.secondary,.action{background:#243442;color:var(--text);border:0;border-radius:12px;padding:9px 12px;font:inherit;font-weight:700}.action.danger{background:#5a252d;color:#ffdce0}.item{background:var(--panel2);border:1px solid #1b2934;border-radius:16px;padding:13px;margin-top:10px;display:flex;justify-content:space-between;gap:12px;align-items:center}.item strong{display:block;margin-bottom:4px}.actions{display:flex;gap:7px;flex-wrap:wrap}.bar{height:9px;background:#263b36;border-radius:99px;overflow:hidden;margin-top:10px}.bar span{display:block;height:100%;background:var(--green);width:0}.hidden{display:none}.good{color:var(--green)}.bad{color:var(--red)}footer{text-align:center;color:var(--muted);font-size:11px;letter-spacing:.5px;padding:20px 0}
+@media(max-width:390px){main{padding:16px 11px 85px}.card{padding:14px}.grid{gap:8px}.metric{padding:12px}.metric b{font-size:21px}}
+</style>
+</head>
+<body><main>
+<header><div><div class="eyebrow">PERSONAL OPERATING SYSTEM</div><h1>ANIRUDH OS ✦</h1><div class="muted">SSC Academy · CHSL 2026 / CGL 2027</div></div><div class="pill">PHASE 3 · MODULE 3</div></header>
+<nav class="tabs" id="tabs">
+<button class="active" data-tab="overview">Overview</button><button data-tab="study">Study Log</button><button data-tab="topics">Topic Tracker</button><button data-tab="mocks">Mock Tests</button><button data-tab="revision">Revision</button><button data-tab="backup">Backup</button>
+</nav>
+<section id="overview">
+<div class="card hero"><div class="eyebrow">TOTAL STUDY HOURS</div><strong id="totalHours">0h</strong><div class="muted" id="studySub">Log each study session to build your progress record.</div><div class="bar"><span id="studyBar"></span></div></div>
+<div class="grid">
+<div class="metric"><div class="label">Topics completed</div><b id="completed">0</b></div><div class="metric"><div class="label">Topics in progress</div><b id="progress">0</b></div>
+<div class="metric"><div class="label">Mock tests</div><b id="mockCount">0</b></div><div class="metric"><div class="label">Average accuracy</div><b id="avgAccuracy">0%</b></div>
+</div>
+<div class="card" style="margin-top:14px"><h2>Exam targets</h2><div class="item"><div><strong>SSC CHSL 2026</strong><span class="muted">Primary target</span></div><span class="pill">ACTIVE</span></div><div class="item"><div><strong>SSC CGL 2027</strong><span class="muted">Long-term target</span></div><span class="pill">ACTIVE</span></div></div>
+<div class="card"><h2>Subject-wise topic status</h2><div id="subjectSummary" class="muted">Add topics in Topic Tracker to see your subject progress.</div></div>
+<div class="card"><h2>Recent study activity</h2><div id="recentStudy" class="muted">No study sessions logged yet.</div></div>
+</section>
+<section id="study" class="hidden">
+<div class="card"><h2>＋ Add study session</h2><form id="studyForm">
+<label>Date<input type="date" id="studyDate" required></label>
+<label>Exam<select id="studyExam"><option>SSC CHSL 2026</option><option>SSC CGL 2027</option><option>Other</option></select></label>
+<label>Subject<select id="studySubject"><option>Maths</option><option>Reasoning</option><option>English</option><option>General Studies</option></select></label>
+<label>Duration (minutes)<input type="number" id="studyMinutes" min="1" max="1440" placeholder="e.g. 60" required></label>
+<label>What did you study? (optional)<input id="studyNote" maxlength="120" placeholder="e.g. Percentage PYQs"></label>
+<button class="primary">Save study session</button></form><p class="hint">You can add multiple sessions per day. Hours are calculated automatically.</p></div>
+<div class="card"><h2>Study history</h2><div id="studyList" class="muted">No sessions yet.</div></div>
+</section>
+<section id="topics" class="hidden">
+<div class="card"><h2>＋ Add topic</h2><form id="topicForm">
+<label>Exam<select id="topicExam"><option>SSC CHSL 2026</option><option>SSC CGL 2027</option><option>Both</option></select></label>
+<label>Subject<select id="topicSubject"><option>Maths</option><option>Reasoning</option><option>English</option><option>General Studies</option></select></label>
+<label>Topic name<input id="topicName" maxlength="100" placeholder="e.g. Percentage" required></label>
+<label>Status<select id="topicStatus"><option>Not started</option><option>In progress</option><option>Completed</option></select></label>
+<button class="primary">Save topic</button></form></div>
+<div class="card"><h2>All topics</h2><div id="topicList" class="muted">No topics added yet.</div></div>
+</section>
+<section id="mocks" class="hidden">
+<div class="card"><h2>＋ Add mock test result</h2><form id="mockForm">
+<label>Date<input type="date" id="mockDate" required></label>
+<label>Exam<select id="mockExam"><option>SSC CHSL 2026</option><option>SSC CGL 2027</option><option>Other</option></select></label>
+<label>Test name<input id="mockName" maxlength="100" placeholder="e.g. CHSL Full Mock 01" required></label>
+<div class="grid"><label>Score<input type="number" id="mockScore" min="0" step="0.01" placeholder="e.g. 128" required></label><label>Maximum marks<input type="number" id="mockMax" min="1" step="0.01" placeholder="e.g. 200" required></label></div>
+<label>Attempted questions (optional)<input type="number" id="mockAttempted" min="0" placeholder="e.g. 85"></label>
+<label>Correct answers (optional)<input type="number" id="mockCorrect" min="0" placeholder="e.g. 72"></label>
+<button class="primary">Save mock result</button></form><p class="hint">Accuracy is calculated as correct ÷ attempted × 100 when both values are entered.</p></div>
+<div class="card"><h2>Mock test history</h2><div id="mockList" class="muted">No mock tests recorded yet.</div></div>
+</section>
+<section id="revision" class="hidden">
+<div class="card"><h2>＋ Add revision record</h2><form id="revisionForm">
+<label>Date<input type="date" id="revisionDate" required></label>
+<label>Subject<select id="revisionSubject"><option>Maths</option><option>Reasoning</option><option>English</option><option>General Studies</option></select></label>
+<label>Topic revised<input id="revisionTopic" maxlength="100" placeholder="e.g. Profit & Loss" required></label>
+<label>Revision round<select id="revisionRound"><option>1st Revision</option><option>2nd Revision</option><option>3rd Revision</option><option>4th+ Revision</option></select></label>
+<button class="primary">Save revision</button></form></div>
+<div class="card"><h2>Revision history</h2><div id="revisionList" class="muted">No revision records yet.</div></div>
+</section>
+<section id="backup" class="hidden">
+<div class="card"><h2>📦 SSC Academy backup</h2><p class="muted">Download a JSON copy of your study sessions, topics, mock tests and revision history. Keep it safe before clearing browser data or changing phones.</p><button class="primary" id="downloadBackup">Download JSON backup</button><label style="margin-top:14px">Restore backup<input type="file" id="restoreFile" accept="application/json"></label><button class="secondary" id="restoreBackup" style="width:100%;margin-top:10px">Restore backup</button><p class="hint">Restoring replaces this SSC Academy module's current records. Download a backup first.</p></div>
+<div class="card"><h2>Data & privacy</h2><p class="muted">Storage: this browser on this device only. No account or cloud sync is enabled. Your SSC records are separate from Business and Finance data.</p></div>
+</section>
+<footer>ANIRUDH OS · PHASE 3 · SSC ACADEMY · LOCAL STORAGE</footer>
+</main>
+<script>
+const KEY='anirudhOS_ssc_v1';
+const blank=()=>({sessions:[],topics:[],mocks:[],revisions:[]});
+let db;try{db=JSON.parse(localStorage.getItem(KEY)||'null')||blank()}catch(e){db=blank()}
+const $=id=>document.getElementById(id), today=new Date().toISOString().slice(0,10);
+['studyDate','mockDate','revisionDate'].forEach(id=>$(id).value=today);
+function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function dateLabel(d){return d||'No date'}
+function item(title,sub,amount,buttons=''){return '<div class="item"><div style="min-width:0"><strong>'+esc(title)+'</strong><div class="muted">'+esc(sub)+'</div>'+(amount?'<b>'+amount+'</b>':'')+'</div><div class="actions">'+buttons+'</div></div>'}
+function action(type,id){return '<button class="action" data-action="'+type+'" data-id="'+id+'">Edit</button><button class="action danger" data-action="delete-'+type+'" data-id="'+id+'">Delete</button>'}
+function render(){
+ const mins=db.sessions.reduce((s,x)=>s+Number(x.minutes||0),0), hours=mins/60;
+ $('totalHours').textContent=(Math.round(hours*10)/10)+'h';$('studySub').textContent=db.sessions.length+' study sessions logged · '+mins+' minutes total';$('studyBar').style.width=Math.min(100,hours/4*100)+'%';
+ $('completed').textContent=db.topics.filter(x=>x.status==='Completed').length;$('progress').textContent=db.topics.filter(x=>x.status==='In progress').length;$('mockCount').textContent=db.mocks.length;
+ const acc=db.mocks.filter(x=>x.attempted>0&&x.correct!==''&&x.correct!=null).map(x=>100*Number(x.correct)/Number(x.attempted));$('avgAccuracy').textContent=acc.length?Math.round(acc.reduce((a,b)=>a+b,0)/acc.length)+'%':'0%';
+ const subjects=['Maths','Reasoning','English','General Studies'];$('subjectSummary').innerHTML=db.topics.length?subjects.map(s=>{let a=db.topics.filter(x=>x.subject===s),done=a.filter(x=>x.status==='Completed').length;return '<div style="margin:12px 0"><div style="display:flex;justify-content:space-between"><b>'+s+'</b><span class="muted">'+done+'/'+a.length+' completed</span></div><div class="bar"><span style="width:'+(a.length?done/a.length*100:0)+'%"></span></div></div>'}).join(''):'Add topics in Topic Tracker to see your subject progress.';
+ $('recentStudy').innerHTML=db.sessions.length?db.sessions.slice().sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4).map(x=>item(x.subject+' · '+x.minutes+' min',dateLabel(x.date)+' · '+x.exam, x.note)).join(''):'No study sessions logged yet.';
+ $('studyList').innerHTML=db.sessions.length?db.sessions.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>item(x.subject+' · '+x.minutes+' min',dateLabel(x.date)+' · '+x.exam,x.note,action('session',x.id))).join(''):'No sessions yet.';
+ $('topicList').innerHTML=db.topics.length?db.topics.map(x=>item(x.name,x.exam+' · '+x.subject+' · '+x.status,'',action('topic',x.id))).join(''):'No topics added yet.';
+ $('mockList').innerHTML=db.mocks.length?db.mocks.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>item(x.name,x.date+' · '+x.exam+' · '+(x.max?Math.round(x.score/x.max*100):0)+'%',x.score+'/'+x.max+' marks · Accuracy '+(x.attempted?Math.round(x.correct/x.attempted*100)+'%':'not entered'),action('mock',x.id))).join(''):'No mock tests recorded yet.';
+ $('revisionList').innerHTML=db.revisions.length?db.revisions.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>item(x.topic,x.date+' · '+x.subject+' · '+x.round,'',action('revision',x.id))).join(''):'No revision records yet.';
+}
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('button[data-tab]');if(!b)return;document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('active',x===b));['overview','study','topics','mocks','revision','backup'].forEach(id=>$(id).classList.toggle('hidden',id!==b.dataset.tab))});
+function formHandler(id,fn){$(id).addEventListener('submit',e=>{e.preventDefault();fn();save();e.target.reset();['studyDate','mockDate','revisionDate'].forEach(k=>$(k).value=today)})}
+formHandler('studyForm',()=>db.sessions.push({id:crypto.randomUUID(),date:$('studyDate').value,exam:$('studyExam').value,subject:$('studySubject').value,minutes:Number($('studyMinutes').value),note:$('studyNote').value.trim()}));
+formHandler('topicForm',()=>db.topics.push({id:crypto.randomUUID(),exam:$('topicExam').value,subject:$('topicSubject').value,name:$('topicName').value.trim(),status:$('topicStatus').value}));
+formHandler('mockForm',()=>{let score=Number($('mockScore').value),max=Number($('mockMax').value),attempted=$('mockAttempted').value,correct=$('mockCorrect').value;if(max<=0||score>max)throw alert('Score must be between 0 and maximum marks.');if(attempted!==''&&correct!==''&&Number(correct)>Number(attempted))throw alert('Correct answers cannot exceed attempted questions.');db.mocks.push({id:crypto.randomUUID(),date:$('mockDate').value,exam:$('mockExam').value,name:$('mockName').value.trim(),score,max,attempted:attempted===''?'':Number(attempted),correct:correct===''?'':Number(correct)})});
+formHandler('revisionForm',()=>db.revisions.push({id:crypto.randomUUID(),date:$('revisionDate').value,subject:$('revisionSubject').value,topic:$('revisionTopic').value.trim(),round:$('revisionRound').value}));
+document.addEventListener('click',e=>{const b=e.target.closest('button[data-action]');if(!b)return;const [verb,type]=b.dataset.action.startsWith('delete-')?['delete',b.dataset.action.slice(7)]:['edit',b.dataset.action];const arr={session:db.sessions,topic:db.topics,mock:db.mocks,revision:db.revisions}[type],i=arr.findIndex(x=>x.id===b.dataset.id);if(i<0)return;if(verb==='delete'){if(confirm('Delete this record?')){arr.splice(i,1);save()}return}const x=arr[i];let fields=type==='session'?['date','exam','subject','minutes','note']:type==='topic'?['exam','subject','name','status']:type==='mock'?['date','exam','name','score','max','attempted','correct']:['date','subject','topic','round'];for(const f of fields){let v=prompt('Edit '+f+' (current: '+(x[f]??'')+')',x[f]??'');if(v===null)return;x[f]=['minutes','score','max','attempted','correct'].includes(f)?(v===''?'':Number(v)):v}save()});
+$('downloadBackup').onclick=()=>{const blob=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),data:db},null,2)],{type:'application/json'}),a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download='anirudh-os-ssc-backup.json';a.click();URL.revokeObjectURL(url)};
+let restoreData=null;$('restoreFile').addEventListener('change',async e=>{try{restoreData=JSON.parse(await e.target.files[0].text()).data;if(!restoreData||!Array.isArray(restoreData.sessions)||!Array.isArray(restoreData.topics)||!Array.isArray(restoreData.mocks)||!Array.isArray(restoreData.revisions))throw Error();alert('Backup file ready. Tap Restore backup.')}catch(err){restoreData=null;alert('Invalid SSC Academy backup file.')}});
+$('restoreBackup').onclick=()=>{if(!restoreData){alert('Choose a valid backup file first.');return}if(confirm('Replace current SSC Academy records with this backup?')){db=restoreData;save();restoreData=null;$('restoreFile').value='';alert('SSC Academy backup restored.')}};
+render();
+</script></body></html>
