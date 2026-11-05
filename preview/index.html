@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d12"><title>ANIRUDH OS — Preview</title>
+<style>
+:root{color-scheme:dark;--bg:#080d12;--panel:#111a23;--panel2:#0c141c;--line:#243442;--muted:#91a2b4;--green:#39d98a;--text:#f4f7fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:900px;margin:auto;padding:22px 16px 100px}.eyebrow{color:var(--green);font-size:11px;font-weight:800;letter-spacing:2px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 0 22px}h1{font-size:28px;letter-spacing:-1px;margin:4px 0}h2{font-size:18px;margin:0 0 14px}p{margin:6px 0;color:var(--muted)}.pill{border:1px solid var(--line);border-radius:99px;padding:7px 10px;color:var(--green);font-size:11px}
+.hero{background:linear-gradient(135deg,#142b27,#101b25 65%);border:1px solid #285344;border-radius:22px;padding:20px;margin-bottom:14px}.hero strong{font-size:32px;display:block;margin:7px 0}.hero small{color:#a9c9bb}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;min-width:0}.metric{font-size:23px;font-weight:750;margin-top:8px}.label{font-size:11px;color:var(--muted);letter-spacing:.8px;text-transform:uppercase}.section-title{display:flex;justify-content:space-between;align-items:center;margin:25px 2px 12px}.modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.module{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px;text-align:left;color:var(--text);cursor:pointer;min-height:112px}.module .ico{font-size:22px}.module b{display:block;margin:8px 0 3px}.module span{font-size:12px;color:var(--muted)}.module.active{border-color:var(--green);background:#10251f}.view{display:none}.view.active{display:block}.topnav{display:flex;gap:8px;overflow:auto;padding:3px 0 12px}.topnav button{white-space:nowrap;background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:9px 13px;color:var(--muted)}.topnav button.active{background:var(--green);color:#062014;border-color:var(--green);font-weight:800}.notice{border:1px solid #725b2c;background:#2b2415;color:#f6d68b;border-radius:14px;padding:12px;font-size:12px;line-height:1.5;margin:14px 0}.list{display:grid;gap:9px}.row{display:flex;justify-content:space-between;gap:12px;padding:12px;background:var(--panel2);border-radius:12px}.row span{color:var(--muted)}footer{margin-top:24px;color:var(--muted);font-size:11px;text-align:center}
+@media(min-width:650px){.modules{grid-template-columns:repeat(3,minmax(0,1fr))}.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:360px){main{padding:16px 11px 90px}.grid{gap:8px}.card{padding:12px}.metric{font-size:19px}}
+</style>
+</head>
+<body><main>
+<header><div><div class="eyebrow">PERSONAL OPERATING SYSTEM</div><h1>ANIRUDH OS <span style="color:var(--green)">✦</span></h1><p>Earn. Learn. Train. Grow.</p></div><div class="pill">PHASE 2 PREVIEW</div></header>
+<nav class="topnav" id="nav">
+<button class="active" data-view="home">Overview</button><button data-view="business">Business</button><button data-view="finance">Finance</button><button data-view="ssc">SSC Academy</button><button data-view="fitness">Fitness</button><button data-view="habits">Habits</button><button data-view="goals">Goals</button>
+</nav>
+<section class="view active" id="home">
+<div class="hero"><div class="eyebrow">DAILY EARNING TARGET</div><strong>₹800</strong><small id="todayEarned">₹0 earned today · 0% complete</small><div style="height:8px;background:#263a35;border-radius:9px;margin-top:14px;overflow:hidden"><div id="todayBar" style="height:100%;width:0;background:var(--green)"></div></div></div>
+<div class="grid"><div class="card"><div class="label">Monthly gross</div><div class="metric" id="monthGross">₹0</div></div><div class="card"><div class="label">Payout received</div><div class="metric" id="monthPayout">₹0</div></div><div class="card"><div class="label">This week</div><div class="metric" id="weekGross">₹0</div></div><div class="card"><div class="label">Study hours</div><div class="metric" id="studyHours">0</div></div></div>
+<div class="section-title"><h2>Your workspace</h2><span class="label">7 modules</span></div>
+<div class="modules">
+<button class="module" data-open="business"><div class="ico">📦</div><b>Business</b><span>Blinkit earnings & payouts</span></button>
+<button class="module" data-open="finance"><div class="ico">💳</div><b>Finance</b><span>Expenses, savings & SIPs</span></button>
+<button class="module" data-open="ssc"><div class="ico">📚</div><b>SSC Academy</b><span>Study, mocks & revision</span></button>
+<button class="module" data-open="fitness"><div class="ico">🏋️</div><b>Fitness</b><span>Workout, weight & sleep</span></button>
+<button class="module" data-open="habits"><div class="ico">🔥</div><b>Habits & Routine</b><span>Daily checklist & streaks</span></button>
+<button class="module" data-open="goals"><div class="ico">🎯</div><b>Goals & Records</b><span>Milestones & monthly review</span></button>
+</div>
+<div class="notice">Preview only: this version reads your existing ANIRUDH OS records without changing or deleting them. New module forms and data saving will be added after the design and data structure are verified.</div>
+</section>
+<section class="view" id="business"><h2>📦 Business · Blinkit Manager</h2><div class="grid"><div class="card"><div class="label">Daily target</div><div class="metric">₹800</div></div><div class="card"><div class="label">Monthly target</div><div class="metric">₹20,800</div></div></div><div class="card" style="margin-top:12px"><p>Existing earning records are preserved in the current app. Daily entry, weekly Monday–Sunday summaries and Wednesday payout tools remain in the production version while this preview is being built.</p></div></section>
+<section class="view" id="finance"><h2>💳 Finance · Money Manager</h2><div class="list"><div class="row"><b>Expenses</b><span>Planned module</span></div><div class="row"><b>Rent & bills</b><span>Planned module</span></div><div class="row"><b>Emergency fund</b><span>Planned module</span></div><div class="row"><b>SIP & investments</b><span>Planned module</span></div><div class="row"><b>Loans & debt</b><span>Planned module</span></div></div></section>
+<section class="view" id="ssc"><h2>📚 SSC Academy</h2><div class="list"><div class="row"><b>SSC CHSL 2026</b><span>Target</span></div><div class="row"><b>SSC CGL 2027</b><span>Target</span></div><div class="row"><b>Maths · Reasoning</b><span>Subjects</span></div><div class="row"><b>English · General Studies</b><span>Subjects</span></div><div class="row"><b>Mocks · PYQs · Revision</b><span>Planned tracker</span></div></div></section>
+<section class="view" id="fitness"><h2>🏋️ Fitness</h2><div class="list"><div class="row"><b>Weight & measurements</b><span>Planned tracker</span></div><div class="row"><b>Workout & running</b><span>Planned tracker</span></div><div class="row"><b>Sleep & steps</b><span>Planned tracker</span></div></div></section>
+<section class="view" id="habits"><h2>🔥 Habits & Routine</h2><div class="list"><div class="row"><b>Daily checklist</b><span>Planned tracker</span></div><div class="row"><b>Habit streaks</b><span>Planned tracker</span></div><div class="row"><b>AI learning schedule</b><span>Planned tracker</span></div></div></section>
+<section class="view" id="goals"><h2>🎯 Goals & Records</h2><div class="list"><div class="row"><b>Short-term goals</b><span>Planned tracker</span></div><div class="row"><b>Long-term milestones</b><span>Planned tracker</span></div><div class="row"><b>Monthly review</b><span>Planned tracker</span></div></div></section>
+<footer>ANIRUDH OS · PHASE 2 DESIGN PREVIEW · READ-ONLY DATA CHECK</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);const fmt=n=>'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2});
+function localDate(d=new Date()){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function weekStart(s){const d=new Date(s+'T00:00:00');const day=d.getDay();d.setDate(d.getDate()+(day===0?-6:1-day));return localDate(d)}
+try{const db=JSON.parse(localStorage.getItem('anirudhOS_v2')||'{}');const business=Array.isArray(db.business)?db.business:[],study=Array.isArray(db.study)?db.study:[],payouts=Array.isArray(db.payouts)?db.payouts:[];const today=localDate(),month=today.slice(0,7),start=weekStart(today);const sum=a=>a.reduce((s,x)=>s+Number(x.earning||0),0);const earned=sum(business.filter(x=>x.date===today));$('todayEarned').textContent=fmt(earned)+' earned today · '+Math.min(100,Math.round(earned/800*100))+'% complete';$('todayBar').style.width=Math.min(100,earned/800*100)+'%';$('monthGross').textContent=fmt(sum(business.filter(x=>x.date?.startsWith(month))));$('monthPayout').textContent=fmt(payouts.filter(x=>x.receivedDate?.startsWith(month)).reduce((s,x)=>s+Number(x.amount||0),0));$('weekGross').textContent=fmt(sum(business.filter(x=>x.date>=start&&x.date<=today)));$('studyHours').textContent=study.filter(x=>x.date?.startsWith(month)).reduce((s,x)=>s+Number(x.total||0),0)}catch(e){console.warn('Could not read existing local records',e)}
+function openView(id){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===id));}
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>openView(b.dataset.view)));document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>openView(b.dataset.open)));
+</script></body></html>
