@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d12"><title>ANIRUDH OS · Personal Operating System</title>
+<style>
+:root{color-scheme:dark;--bg:#080d12;--panel:#111a23;--panel2:#0c141c;--line:#243442;--muted:#91a2b4;--green:#39d98a;--text:#f4f7fa}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}main{max-width:960px;margin:auto;padding:20px 15px 32px}header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:5px 0 18px}.eyebrow{color:var(--green);font-size:11px;font-weight:850;letter-spacing:2px}h1{font-size:29px;margin:5px 0}.muted{color:var(--muted)}.pill{border:1px solid var(--line);border-radius:99px;padding:8px 12px;color:var(--green);font-size:11px}.hero{background:linear-gradient(130deg,#142b27,#101b25 65%);border:1px solid #285344;border-radius:20px;padding:19px;margin-bottom:14px}.hero strong{display:block;font-size:24px;margin:5px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.tile{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:left;color:var(--text);min-height:110px;cursor:pointer}.tile:active{border-color:var(--green)}.tile .ico{font-size:24px}.tile b{display:block;margin:8px 0 3px;font-size:16px}.tile small{color:var(--muted);font-size:12px}.bar{display:flex;gap:8px;overflow:auto;padding:4px 0 14px}.bar button{white-space:nowrap;border:1px solid var(--line);border-radius:99px;background:var(--panel);color:var(--muted);padding:10px 14px;font:inherit}.bar button.active{background:var(--green);color:#062014;border-color:var(--green);font-weight:800}.screen{display:none}.screen.active{display:block}.frame-wrap{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}.frame-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line)}.frame-head button{border:0;border-radius:9px;background:#253443;color:white;padding:8px 11px}.frame-wrap iframe{display:block;width:100%;height:78vh;min-height:650px;border:0;background:var(--bg)}.notice{border:1px solid #725b2c;background:#2b2415;color:#f6d68b;border-radius:13px;padding:12px;font-size:12px;line-height:1.55;margin:14px 0}footer{text-align:center;color:var(--muted);font-size:11px;margin:22px 0 5px}@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.frame-wrap iframe{height:82vh}}@media(max-width:370px){main{padding:16px 11px}.tile{padding:13px}}
+</style></head><body><main>
+<header><div><div class="eyebrow">PERSONAL OPERATING SYSTEM</div><h1>ANIRUDH OS ✦</h1><div class="muted">Earn. Learn. Train. Grow.</div></div><div class="pill">ALL-IN-ONE · BASIC EDITION</div></header>
+<section class="screen active" id="home">
+<div class="hero"><div class="eyebrow">YOUR PERSONAL WORKSPACE</div><strong>One place for your daily life.</strong><div class="muted">Blinkit · Money · SSC · Fitness · Habits · Goals</div></div>
+<div class="grid">
+<button class="tile" onclick="openModule('business')"><div class="ico">📦</div><b>Business · Blinkit</b><small>Daily earnings, slots & Wednesday payout</small></button>
+<button class="tile" onclick="openModule('finance')"><div class="ico">💳</div><b>Finance Manager</b><small>Income, expenses, savings & loans</small></button>
+<button class="tile" onclick="openModule('ssc')"><div class="ico">📚</div><b>SSC Academy</b><small>CHSL, CGL, study log, mocks & revision</small></button>
+<button class="tile" onclick="openModule('fitness')"><div class="ico">🏋️</div><b>Fitness Manager</b><small>Weight, workout, running & sleep</small></button>
+<button class="tile" onclick="openModule('habits')"><div class="ico">🔥</div><b>Habits & Routine</b><small>Daily checklist, routine & streaks</small></button>
+<button class="tile" onclick="openModule('goals')"><div class="ico">🎯</div><b>Goals & Records</b><small>Targets, milestones & monthly review</small></button>
+</div>
+<div class="notice"><b>Data privacy:</b> This basic edition saves entries in the browser on the device where they are entered. It does not automatically sync data to another phone. Download backups regularly. For showing the app to someone else, open this link on their device; their records will remain separate.</div>
+</section>
+<section class="screen" id="module"><nav class="bar" id="nav">
+<button data-module="home" class="active" onclick="goHome()">⌂ Home</button>
+<button data-module="business" onclick="openModule('business')">📦 Blinkit</button>
+<button data-module="finance" onclick="openModule('finance')">💳 Finance</button>
+<button data-module="ssc" onclick="openModule('ssc')">📚 SSC</button>
+<button data-module="fitness" onclick="openModule('fitness')">🏋️ Fitness</button>
+<button data-module="habits" onclick="openModule('habits')">🔥 Habits</button>
+<button data-module="goals" onclick="openModule('goals')">🎯 Goals</button>
+</nav><div class="frame-wrap"><div class="frame-head"><b id="moduleTitle">Module</b><button onclick="goHome()">← Back to Home</button></div><iframe id="appFrame" title="ANIRUDH OS module" loading="eager"></iframe></div></section>
+<footer>ANIRUDH OS · BASIC EDITION · VERSION 1.0</footer></main>
+<script>
+const modules={business:{title:'Blinkit Manager',src:'../phase3-business.html'},finance:{title:'Finance Manager',src:'../phase3-integrated.html'},ssc:{title:'SSC Academy',src:'../phase3-ssc.html'},fitness:{title:'Fitness Manager',src:'../fitness/index.html'},habits:{title:'Habits & Routine',src:'../habits/index.html'},goals:{title:'Goals & Records',src:'../goals/index.html'}};
+function openModule(key){const m=modules[key];if(!m)return;document.getElementById('home').classList.remove('active');document.getElementById('module').classList.add('active');document.getElementById('moduleTitle').textContent=m.title;document.getElementById('appFrame').src=m.src;document.querySelectorAll('[data-module]').forEach(b=>b.classList.toggle('active',b.dataset.module===key));window.scrollTo({top:0,behavior:'smooth'})}
+function goHome(){document.getElementById('module').classList.remove('active');document.getElementById('home').classList.add('active');document.getElementById('appFrame').src='about:blank';window.scrollTo({top:0,behavior:'smooth'})}
+</script></body></html>
