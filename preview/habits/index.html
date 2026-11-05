@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d10">
+<title>ANIRUDH OS · Habits & Routine</title>
+<style>
+:root{color-scheme:dark;--bg:#080d10;--card:#111b24;--line:#263542;--muted:#98a7b8;--green:#35d58b;--red:#ef737b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f2f6fa;font:16px system-ui,-apple-system,Segoe UI,sans-serif;padding:24px 16px 48px;max-width:760px;margin:auto}
+.eyebrow{color:var(--green);letter-spacing:3px;font-size:13px;font-weight:800}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}h1{font-size:34px;margin:8px 0 2px}.sub{color:var(--muted);font-size:20px}.pill{border:1px solid var(--line);border-radius:30px;padding:10px 14px;color:var(--green);white-space:nowrap}
+nav{display:flex;gap:10px;overflow:auto;padding:24px 0 16px}nav button{white-space:nowrap;border:1px solid var(--line);border-radius:28px;background:var(--card);color:var(--muted);padding:13px 18px;font-size:16px}nav button.active{background:var(--green);color:#062217;font-weight:800}
+.panel,.card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:22px;margin:12px 0}.hero{background:linear-gradient(120deg,#102c28,#111b24);border-color:#285347}.label{color:var(--muted);font-size:13px;letter-spacing:1.5px}.big{font-size:38px;font-weight:850;margin:6px 0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.metric{background:#0c151c;border:1px solid #1d2b37;border-radius:20px;padding:18px;min-height:100px}.metric strong{display:block;font-size:27px;margin-top:8px}.green{color:var(--green)}h2{font-size:22px;margin:0 0 18px}label{display:block;color:#c8d1dc;margin:14px 0 7px}input,select,textarea{width:100%;padding:15px;border-radius:16px;border:1px solid var(--line);background:#0b141b;color:#f3f6fa;font:inherit}button.primary{width:100%;border:0;border-radius:16px;background:var(--green);color:#062217;font-weight:850;font-size:18px;padding:17px;margin-top:16px}.secondary{border:1px solid var(--line);border-radius:12px;background:#263746;color:white;padding:10px 13px}.danger{background:#602b34!important}.record{background:#0b141b;border:1px solid #1d2b37;border-radius:18px;padding:15px;margin-top:12px;display:flex;justify-content:space-between;gap:12px;align-items:center}.record button{border:0;border-radius:12px;padding:9px 12px;background:#263746;color:white;margin-left:5px}.hidden{display:none}.note{font-size:14px;color:var(--muted);line-height:1.6}footer{text-align:center;color:var(--muted);font-size:13px;margin-top:36px}.progress{height:10px;background:#263542;border-radius:20px;overflow:hidden;margin-top:12px}.bar{height:100%;width:0;background:var(--green)}.habit-row{display:flex;align-items:center;gap:12px;background:#0b141b;border:1px solid #1d2b37;border-radius:16px;padding:14px;margin-top:10px}.habit-row input{width:22px;height:22px;accent-color:var(--green)}.habit-row .grow{flex:1}.tiny{font-size:13px;color:var(--muted)}
+@media(max-width:440px){h1{font-size:29px}.grid{gap:9px}.metric{padding:14px}.metric strong{font-size:23px}.panel,.card{padding:18px}}
+</style></head>
+<body>
+<div class="eyebrow">PERSONAL OPERATING SYSTEM</div><div class="top"><div><h1>ANIRUDH OS ✦</h1><div class="sub">Habits · Routine & Productivity</div></div><div class="pill">PHASE 3 · MODULE 5</div></div>
+<nav><button class="active" data-tab="overview">Overview</button><button data-tab="habits">Daily Habits</button><button data-tab="routine">Routine</button><button data-tab="ai">AI Learning</button><button data-tab="backup">Backup</button></nav>
+<section id="overview">
+<div class="panel hero"><div class="label">TODAY'S HABIT SCORE</div><div class="big" id="score">0%</div><div class="muted" id="scoreText">0 of 0 habits completed today</div><div class="progress"><div class="bar" id="scoreBar"></div></div></div>
+<div class="grid"><div class="metric"><span class="label">ACTIVE HABITS</span><strong id="habitCount">0</strong></div><div class="metric"><span class="label">COMPLETED TODAY</span><strong id="doneCount">0</strong></div><div class="metric"><span class="label">BEST CURRENT STREAK</span><strong id="bestStreak">0 days</strong></div><div class="metric"><span class="label">ROUTINE TASKS TODAY</span><strong id="routineCount">0</strong></div></div>
+<div class="card"><h2>Today's checklist</h2><div id="todayList" class="muted">Add habits in Daily Habits to begin.</div></div>
+<div class="card"><h2>Today's routine</h2><div id="todayRoutine" class="muted">No routine tasks yet.</div></div>
+<p class="note">Your habits and routine are saved in this browser on this device. Use Backup before clearing browser data or changing phones.</p>
+</section>
+<section id="habits" class="hidden">
+<div class="panel"><h2>＋ Create a habit</h2><label>Habit name</label><input id="hName" maxlength="60" placeholder="e.g. SSC study, workout, reading"><label>Category</label><select id="hCategory"><option>Study</option><option>Health</option><option>Personal</option><option>Learning</option><option>Other</option></select><label>Frequency</label><select id="hFrequency"><option value="daily">Every day</option><option value="weekdays">Monday to Friday</option><option value="weekly">Weekly goal</option></select><button class="primary" onclick="addHabit()">Save habit</button></div>
+<div class="card"><h2>Daily check-in · <span id="habitDateLabel"></span></h2><div id="habitChecks"></div></div>
+<div class="card"><h2>All habits & streaks</h2><div id="habitHistory"></div></div>
+</section>
+<section id="routine" class="hidden">
+<div class="panel"><h2>＋ Add routine task</h2><label>Task</label><input id="rName" maxlength="70" placeholder="e.g. Maths practice"><label>Time</label><input id="rTime" type="time"><label>Days</label><select id="rDays"><option value="daily">Every day</option><option value="weekdays">Monday to Friday</option><option value="weekends">Saturday and Sunday</option></select><button class="primary" onclick="addRoutine()">Save routine task</button></div>
+<div class="card"><h2>Routine checklist · Today</h2><div id="routineToday"></div></div>
+<div class="card"><h2>All routine tasks</h2><div id="routineAll"></div></div>
+</section>
+<section id="ai" class="hidden">
+<div class="panel"><h2>✦ AI Learning Schedule</h2><p class="note">A focused 45-minute daily learning block. Change the time or lesson name whenever you need.</p><label>Learning time</label><input id="aiTime" type="time" value="23:00"><label>Duration (minutes)</label><input id="aiDuration" type="number" min="5" max="240" value="45"><label>Current learning focus</label><input id="aiFocus" maxlength="80" value="AI basics from scratch"><label>Days</label><select id="aiDays"><option value="daily">Every day</option><option value="weekdays">Monday to Friday</option><option value="weekends">Saturday and Sunday</option></select><button class="primary" onclick="saveAI()">Save AI schedule</button></div>
+<div class="card"><h2>Your AI learning plan</h2><div id="aiSummary" class="muted"></div><p class="note">This records your plan inside ANIRUDH OS. It does not send phone notifications or alarms.</p></div>
+</section>
+<section id="backup" class="hidden"><div class="panel"><h2>▣ Habits & Routine backup</h2><p class="note">Download your habits, check-ins, routine and AI schedule as a JSON file.</p><button class="primary" onclick="backup()">Download JSON backup</button><label>Restore backup</label><input id="restoreFile" type="file" accept="application/json"><button class="primary" onclick="restore()">Restore backup</button><p class="note">Restoring replaces this module's current records only.</p></div></section>
+<footer>ANIRUDH OS · PHASE 3 · HABITS & ROUTINE · LOCAL STORAGE</footer>
+<script>
+const KEY='anirudhOS_habits_v1';
+const today=(()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')})();
+const blank=()=>({habits:[],checks:{},routine:[],routineChecks:{},ai:{time:'23:00',duration:45,focus:'AI basics from scratch',days:'daily'}});
+let db;try{db=JSON.parse(localStorage.getItem(KEY))||blank();if(!Array.isArray(db.habits)||!Array.isArray(db.routine))throw Error();db.checks=db.checks||{};db.routineChecks=db.routineChecks||{};db.ai=db.ai||blank().ai}catch(e){db=blank()}
+const $=id=>document.getElementById(id);
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function persist(){localStorage.setItem(KEY,JSON.stringify(db));render()}
+function dayName(d=today){return new Date(d+'T12:00:00').getDay()}
+function activeOn(freq,d=today){let n=dayName(d);return freq==='daily'||(freq==='weekdays'&&n>=1&&n<=5)||(freq==='weekends'&&(n===0||n===6))||freq==='weekly'}
+function done(id,d=today){return !!(db.checks[d]&&db.checks[d][id])}
+function toggleHabit(id,checked){db.checks[today]=db.checks[today]||{};db.checks[today][id]=checked;persist()}
+function streak(id){let n=0,d=new Date(today+'T12:00:00');while(true){let s=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');if(!db.checks[s]||!db.checks[s][id])break;n++;d.setDate(d.getDate()-1)}return n}
+function addHabit(){let name=$('hName').value.trim();if(!name)return alert('Enter a habit name.');db.habits.push({id:Date.now(),name,category:$('hCategory').value,frequency:$('hFrequency').value,created:today});$('hName').value='';persist()}
+function deleteHabit(id){if(confirm('Delete this habit and its history?')){db.habits=db.habits.filter(h=>h.id!==id);Object.keys(db.checks).forEach(d=>delete db.checks[d][id]);persist()}}
+function addRoutine(){let name=$('rName').value.trim(),time=$('rTime').value;if(!name||!time)return alert('Enter task name and time.');db.routine.push({id:Date.now(),name,time,days:$('rDays').value});$('rName').value='';persist()}
+function toggleRoutine(id,v){db.routineChecks[today]=db.routineChecks[today]||{};db.routineChecks[today][id]=v;persist()}
+function deleteRoutine(id){if(confirm('Delete this routine task?')){db.routine=db.routine.filter(r=>r.id!==id);persist()}}
+function saveAI(){let duration=+$('aiDuration').value;if(!duration||duration<5||duration>240)return alert('Duration must be 5–240 minutes.');db.ai={time:$('aiTime').value,duration,focus:$('aiFocus').value.trim()||'AI learning',days:$('aiDays').value};persist();alert('AI schedule saved.')}
+function habitRow(h,check=false){let is=done(h.id);return '<div class="habit-row">'+(check?'<input type="checkbox" '+(is?'checked':'')+' onchange="toggleHabit('+h.id+',this.checked)">':'')+'<div class="grow"><b>'+esc(h.name)+'</b><div class="tiny">'+esc(h.category)+' · '+esc(h.frequency)+'</div></div>'+(check?'<span class="tiny">'+streak(h.id)+' day streak</span>':'<button class="secondary" onclick="deleteHabit('+h.id+')">Delete</button>')+'</div>'}
+function routineRow(r,check=false){let is=!!(db.routineChecks[today]&&db.routineChecks[today][r.id]);return '<div class="habit-row">'+(check?'<input type="checkbox" '+(is?'checked':'')+' onchange="toggleRoutine('+r.id+',this.checked)">':'')+'<div class="grow"><b>'+esc(r.time)+' · '+esc(r.name)+'</b><div class="tiny">'+esc(r.days)+'</div></div>'+(check?'':'<button class="secondary" onclick="deleteRoutine('+r.id+')">Delete</button>')+'</div>'}
+function render(){let hs=db.habits.filter(h=>activeOn(h.frequency)),completed=hs.filter(h=>done(h.id)).length,percent=hs.length?Math.round(completed/hs.length*100):0;$('score').textContent=percent+'%';$('scoreText').textContent=completed+' of '+hs.length+' habits completed today';$('scoreBar').style.width=percent+'%';$('habitCount').textContent=db.habits.length;$('doneCount').textContent=completed;$('bestStreak').textContent=(db.habits.reduce((m,h)=>Math.max(m,streak(h.id)),0))+' days';let rt=db.routine.filter(r=>activeOn(r.days==='daily'?'daily':r.days));$('routineCount').textContent=rt.filter(r=>db.routineChecks[today]&&db.routineChecks[today][r.id]).length+'/'+rt.length;$('habitDateLabel').textContent=today;
+$('todayList').innerHTML=hs.length?hs.map(h=>habitRow(h,true)).join(''):'Add habits in Daily Habits to begin.';$('habitChecks').innerHTML=hs.length?hs.map(h=>habitRow(h,true)).join(''):'No habits scheduled today.';$('habitHistory').innerHTML=db.habits.length?db.habits.map(h=>habitRow(h,false)).join(''):'No habits added yet.';
+$('todayRoutine').innerHTML=rt.length?rt.sort((a,b)=>a.time.localeCompare(b.time)).map(r=>routineRow(r,true)).join(''):'No routine tasks yet.';$('routineToday').innerHTML=$('todayRoutine').innerHTML;$('routineAll').innerHTML=db.routine.length?db.routine.slice().sort((a,b)=>a.time.localeCompare(b.time)).map(r=>routineRow(r,false)).join(''):'No routine tasks added.';
+$('aiTime').value=db.ai.time;$('aiDuration').value=db.ai.duration;$('aiFocus').value=db.ai.focus;$('aiDays').value=db.ai.days;$('aiSummary').innerHTML='<b>'+esc(db.ai.time)+' · '+esc(db.ai.duration)+' minutes</b><p>'+esc(db.ai.focus)+'</p><p class="tiny">Schedule: '+esc(db.ai.days)+'</p>'}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));['overview','habits','routine','ai','backup'].forEach(x=>$(x).classList.toggle('hidden',x!==b.dataset.tab))});
+function backup(){let a=document.createElement('a'),u=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:'application/json'}));a.href=u;a.download='anirudh-os-habits-backup.json';a.click();URL.revokeObjectURL(u)}
+function restore(){let f=$('restoreFile').files[0];if(!f)return alert('Choose a backup file first.');let rd=new FileReader();rd.onload=()=>{try{let x=JSON.parse(rd.result);if(!Array.isArray(x.habits)||!Array.isArray(x.routine)||!x.checks||!x.routineChecks)throw Error();if(!confirm('Replace current Habits & Routine records with this backup?'))return;db=x;persist();alert('Backup restored.')}catch(e){alert('Invalid backup file.')}};rd.readAsText(f)}
+render();
+</script></body></html>
