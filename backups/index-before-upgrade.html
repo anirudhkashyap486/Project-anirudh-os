@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d12">
+<title>ANIRUDH OS</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:16px;background:#090d12;color:#f8fafc;font-family:Arial,sans-serif}
+header{padding:10px 0 18px}header h1{font-size:27px;margin:8px 0}.muted,.small{color:#94a3b8}.small{font-size:12px}.green{color:#4ade80}
+.card{background:#151d27;border:1px solid #293746;border-radius:16px;padding:16px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat,.report-stat{background:#0d141d;padding:12px;border-radius:12px;min-width:0}
+.stat h2,.report-stat strong{margin:7px 0;font-size:20px}.report-stat strong{display:block}
+.nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}.nav button{flex:1;min-width:60px}
+button{padding:11px;border:0;border-radius:9px;background:#16a34a;color:white;font-weight:bold;font-size:14px;cursor:pointer}
+.secondary{background:#334155}.danger{background:#991b1b}.action-btn{padding:7px 9px;margin:2px;font-size:12px}.full{width:100%}
+input{width:100%;padding:12px;margin:7px 0 13px;border-radius:9px;border:1px solid #374151;background:#0d141d;color:white;font-size:16px}
+input[type=checkbox]{width:auto}label{font-size:14px;color:#cbd5e1}.section{display:none}.section.active{display:block}
+.progress{height:9px;background:#374151;border-radius:20px;overflow:hidden}.bar{height:100%;background:#4ade80;width:0}
+.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:9px 5px;border-bottom:1px solid #374151;white-space:nowrap}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.report-stat span{font-size:11px;color:#94a3b8}
+@media(max-width:370px){body{padding:10px}.card{padding:12px}.report-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><p class="green">PERSONAL OPERATING SYSTEM</p><h1>ANIRUDH OS ⚡</h1><p class="muted">Earn. Learn. Train. Grow.</p><p id="today" class="small"></p></header>
+<div class="nav">
+<button class="active" data-target="home" onclick="show('home')">Home</button>
+<button class="secondary" data-target="business" onclick="show('business')">Business</button>
+<button class="secondary" data-target="study" onclick="show('study')">SSC</button>
+<button class="secondary" data-target="fitness" onclick="show('fitness')">Fitness</button>
+<button class="secondary" data-target="backup" onclick="show('backup')">Backup</button>
+</div>
+<section id="home" class="section active">
+<div class="card"><p class="muted">DAILY EARNING TARGET</p><h1 class="green">₹800</h1><div class="progress"><div id="todayBar" class="bar"></div></div><p id="todayProgress">₹0 / ₹800</p></div>
+<div class="grid">
+<div class="stat"><p class="small">MONTHLY GROSS</p><h2 id="monthly">₹0</h2></div>
+<div class="stat"><p class="small">PAYOUT RECEIVED THIS MONTH</p><h2 id="monthlyNet">₹0</h2></div>
+<div class="stat"><p class="small">THIS WEEK (MON–SUN)</p><h2 id="weekly">₹0</h2></div>
+<div class="stat"><p class="small">STUDY HOURS THIS MONTH</p><h2 id="studyTotal">0</h2></div>
+</div>
+<div class="card"><h3>All-Time Blinkit Overview</h3><div class="report-grid">
+<div class="report-stat"><span>LIFETIME GROSS</span><strong id="lifetimeGross">₹0</strong></div>
+<div class="report-stat"><span>LIFETIME PAYOUTS</span><strong id="lifetimePayout">₹0</strong></div>
+<div class="report-stat"><span>RECORDED SHORTFALL</span><strong id="outstanding">₹0</strong></div>
+<div class="report-stat"><span>DAYS WITH ENTRIES</span><strong id="daysWorked">0</strong></div>
+</div></div>
+<div class="card"><h3>Monthly Earning Goal ₹20,800</h3><div class="progress"><div id="monthBar" class="bar"></div></div><p id="monthProgress" class="small">0% completed</p></div>
+<div class="card"><h3>Recent Activity</h3><div id="recent" class="muted">No entries yet.</div></div>
+</section>
+<section id="business" class="section">
+<div class="card"><h2>💰 Daily Blinkit Earning</h2><label>Date</label><input type="date" id="date"><label>Today's earning (₹)</label><input type="number" id="earning" min="0" step="0.01" placeholder="Enter today's earning"><button class="full" onclick="saveBusiness()">Save / Update Daily Earning</button><p id="dailyMessage" class="green">Enter your daily earning</p></div>
+<div class="card"><h3>📊 Daily Earning History</h3><div class="table-wrap"><table><thead><tr><th>Date</th><th>Earned</th><th>Actions</th></tr></thead><tbody id="history"></tbody></table></div></div>
+<div class="card"><h2>📅 Current Week</h2><p class="muted">Payout cycle: Monday to Sunday</p><p id="currentWeek"></p><h2 id="weekExpected" class="green">₹0</h2><p class="small">Total earning for this Monday–Sunday period</p></div>
+<div class="card"><h3>📈 Weekly History</h3><div class="table-wrap"><table><thead><tr><th>Week</th><th>Total</th><th>Days</th><th>Avg/day</th></tr></thead><tbody id="weeklyHistory"></tbody></table></div></div>
+<div class="card"><h3>🗓️ Monthly Earning History</h3><div class="table-wrap"><table><thead><tr><th>Month</th><th>Gross</th><th>Days</th></tr></thead><tbody id="monthlyHistory"></tbody></table></div></div>
+<div class="card"><h2>🏦 Wednesday Payout Entry</h2><p class="muted">Link the bank payout to the earning week that ended on Sunday.</p><label>Week ending (Sunday)</label><input type="date" id="weekEnd"><label>Actual payout received date</label><input type="date" id="receivedDate"><label>Actual payout received (₹)</label><input type="number" id="payoutAmount" min="0" step="0.01" placeholder="Enter bank payout">
+<div class="stat"><p class="small">EXPECTED EARNING</p><h2 id="payoutExpected">₹0</h2><p class="small">ACTUAL MINUS EXPECTED</p><h2 id="payoutDifference">₹0</h2><p class="small">STATUS</p><h3 id="payoutStatus" class="green">Awaiting amount</h3></div>
+<button class="full" onclick="savePayout()">Save Wednesday Payout</button></div>
+<div class="card"><h3>💳 Payout History</h3><div class="table-wrap"><table><thead><tr><th>Week</th><th>Expected</th><th>Received</th><th>Difference</th></tr></thead><tbody id="payoutHistory"></tbody></table></div></div>
+</section>
+<section id="study" class="section"><div class="card"><h2>📚 SSC Preparation</h2><label>Date</label><input type="date" id="studyDate"><label>Maths hours</label><input type="number" id="maths" min="0" step="0.5"><label>Reasoning hours</label><input type="number" id="reasoning" min="0" step="0.5"><label>English hours</label><input type="number" id="english" min="0" step="0.5"><label>GS hours</label><input type="number" id="gs" min="0" step="0.5"><button class="full" onclick="saveStudy()">Save Study Report</button><h3 id="studyResult" class="green">Total: 0 hours</h3></div></section>
+<section id="fitness" class="section"><div class="card"><h2>🏋️ Fitness Tracker</h2><label>Date</label><input type="date" id="fitnessDate"><label>Weight (kg)</label><input type="number" id="weight" step="0.1"><label>Sleep (hours)</label><input type="number" id="sleep" step="0.5"><label>Steps</label><input type="number" id="steps"><p><input type="checkbox" id="workout"> Workout completed</p><p><input type="checkbox" id="running"> Running completed</p><button class="full" onclick="saveFitness()">Save Fitness Report</button></div></section>
+<section id="backup" class="section"><div class="card"><h2>💾 Data Backup</h2><p class="muted">Download your records and restore them later.</p><button class="full" onclick="backup()">Download JSON Backup</button><br><br><label>Select backup file</label><input type="file" id="restoreFile" accept=".json"><button class="full secondary" onclick="restore()">Restore Data</button><p class="small">Keep your backup file private.</p></div></section>
+<script>
+const KEY="anirudhOS_v2";
+function emptyDB(){return {business:[],study:[],fitness:[],payouts:[]};}
+let db;
+try{db=JSON.parse(localStorage.getItem(KEY))||emptyDB();if(!Array.isArray(db.business)||!Array.isArray(db.study)||!Array.isArray(db.fitness))throw Error("Invalid data");if(!Array.isArray(db.payouts))db.payouts=[];}catch(e){db=emptyDB();}
+function localDate(d=new Date()){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");}
+function dateObj(s){return new Date(s+"T00:00:00");}
+function addDays(s,n){const d=dateObj(s);d.setDate(d.getDate()+n);return localDate(d);}
+function weekStart(s){const day=dateObj(s).getDay();return addDays(s,day===0?-6:1-day);}
+function weekEnd(s){return addDays(weekStart(s),6);}
+function money(n){return "₹"+Number(n||0).toLocaleString("en-IN",{maximumFractionDigits:2});}
+const today=localDate();document.getElementById("today").textContent=new Date().toDateString();
+["date","studyDate","fitnessDate"].forEach(id=>document.getElementById(id).value=today);
+document.getElementById("receivedDate").value=today;
+document.getElementById("weekEnd").value=addDays(today,-(dateObj(today).getDay()||7));
+function persist(){localStorage.setItem(KEY,JSON.stringify(db));render();}
+function show(id){document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav button").forEach(b=>{b.classList.toggle("active",b.dataset.target===id);b.classList.toggle("secondary",b.dataset.target!==id);});render();}
+function upsert(list,item,key="date"){const i=list.findIndex(x=>x[key]===item[key]);if(i>=0)list[i]=item;else list.push(item);list.sort((a,b)=>b[key].localeCompare(a[key]));}
+function earningsBetween(start,end){return db.business.filter(x=>x.date>=start&&x.date<=end).reduce((sum,x)=>sum+Number(x.earning||0),0);}
+function editBusiness(date){const row=db.business.find(x=>x.date===date);if(!row)return;document.getElementById("date").value=row.date;document.getElementById("earning").value=row.earning;document.getElementById("dailyMessage").textContent="Editing entry for "+date+" — change amount and save.";document.getElementById("business").scrollIntoView({behavior:"smooth",block:"start"});}
+function deleteBusiness(date){if(!db.business.some(x=>x.date===date))return;if(!confirm("Delete earning entry for "+date+"? Restore from your backup if needed."))return;db.business=db.business.filter(x=>x.date!==date);persist();}
+function saveBusiness(){const date=document.getElementById("date").value,raw=document.getElementById("earning").value,earning=Number(raw);if(!date||raw===""||!Number.isFinite(earning)||earning<0){alert("Please enter a valid date and earning amount.");return;}upsert(db.business,{...(db.business.find(x=>x.date===date)||{}),date,earning});document.getElementById("dailyMessage").textContent="Saved earning: "+money(earning);document.getElementById("earning").value="";persist();alert("Daily earning saved!");}
+function renderPayoutPreview(){const end=document.getElementById("weekEnd").value;if(!end)return;const status=document.getElementById("payoutStatus");if(dateObj(end).getDay()!==0){document.getElementById("payoutExpected").textContent="Select a Sunday";document.getElementById("payoutDifference").textContent="—";status.textContent="Invalid week end";return;}const expected=earningsBetween(addDays(end,-6),end),raw=document.getElementById("payoutAmount").value,amount=raw===""?null:Number(raw);document.getElementById("payoutExpected").textContent=money(expected);document.getElementById("payoutDifference").textContent=amount===null?"Enter payout amount":money(amount-expected);if(amount===null){status.textContent="Awaiting amount";status.className="green";}else if(amount===expected){status.textContent="Matched";status.className="green";}else if(amount<expected){status.textContent="Short by "+money(expected-amount);status.className="";}else{status.textContent="Extra by "+money(amount-expected);status.className="green";}}
+document.getElementById("weekEnd").addEventListener("change",renderPayoutPreview);document.getElementById("payoutAmount").addEventListener("input",renderPayoutPreview);
+function savePayout(){const end=document.getElementById("weekEnd").value,receivedDate=document.getElementById("receivedDate").value,raw=document.getElementById("payoutAmount").value,amount=Number(raw);if(!end||dateObj(end).getDay()!==0){alert("Please select the Sunday ending date.");return;}if(!receivedDate||raw===""||!Number.isFinite(amount)||amount<0){alert("Please enter a valid payout date and amount.");return;}upsert(db.payouts,{weekStart:addDays(end,-6),weekEnd:end,receivedDate,amount},"weekEnd");document.getElementById("payoutAmount").value="";persist();alert("Payout saved successfully!");}
+function saveStudy(){const date=document.getElementById("studyDate").value;if(!date){alert("Select date");return;}const hours={};["maths","reasoning","english","gs"].forEach(k=>hours[k]=Number(document.getElementById(k).value)||0);if(Object.values(hours).some(x=>x<0)){alert("Invalid study hours");return;}const total=Object.values(hours).reduce((a,b)=>a+b,0);upsert(db.study,{date,...hours,total});document.getElementById("studyResult").textContent="Total: "+total+" hours";persist();alert("Study report saved!");}
+function saveFitness(){const date=document.getElementById("fitnessDate").value;if(!date){alert("Select date");return;}upsert(db.fitness,{date,weight:Number(document.getElementById("weight").value)||0,sleep:Number(document.getElementById("sleep").value)||0,steps:Number(document.getElementById("steps").value)||0,workout:document.getElementById("workout").checked,running:document.getElementById("running").checked});persist();alert("Fitness report saved!");}
+function render(){const month=today.slice(0,7),monthRows=db.business.filter(x=>x.date.startsWith(month)),gross=monthRows.reduce((a,x)=>a+Number(x.earning||0),0),payoutMonth=db.payouts.filter(x=>x.receivedDate&&x.receivedDate.startsWith(month)).reduce((a,x)=>a+Number(x.amount||0),0),start=weekStart(today),end=weekEnd(today),weekly=earningsBetween(start,end),todayRow=db.business.find(x=>x.date===today),earned=todayRow?Number(todayRow.earning||0):0,studyTotal=db.study.filter(x=>x.date.startsWith(month)).reduce((a,x)=>a+Number(x.total||0),0);
+document.getElementById("monthly").textContent=money(gross);document.getElementById("monthlyNet").textContent=money(payoutMonth);document.getElementById("weekly").textContent=money(weekly);document.getElementById("studyTotal").textContent=studyTotal;document.getElementById("todayBar").style.width=Math.min(100,earned/800*100)+"%";document.getElementById("todayProgress").textContent=money(earned)+" / ₹800";document.getElementById("monthBar").style.width=Math.min(100,gross/20800*100)+"%";document.getElementById("monthProgress").textContent=Math.round(gross/20800*100)+"% completed";
+document.getElementById("history").innerHTML=db.business.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<tr><td>${x.date}</td><td>${money(x.earning)}</td><td><button class="action-btn secondary" onclick="editBusiness('${x.date}')">Edit</button><button class="action-btn danger" onclick="deleteBusiness('${x.date}')">Delete</button></td></tr>`).join("");
+document.getElementById("recent").textContent=db.business.length?db.business.slice().sort((a,b)=>b.date.localeCompare(a.date)).slice(0,3).map(x=>x.date+": "+money(x.earning)+" earned").join(" | "):"No entries yet.";
+document.getElementById("currentWeek").textContent="Monday "+start+" to Sunday "+end;document.getElementById("weekExpected").textContent=money(weekly);
+const wm={};db.business.forEach(x=>{const s=weekStart(x.date),e=weekEnd(x.date);if(!wm[s])wm[s]={end:e,total:0,days:0};wm[s].total+=Number(x.earning||0);wm[s].days++;});document.getElementById("weeklyHistory").innerHTML=Object.keys(wm).sort((a,b)=>b.localeCompare(a)).map(s=>{const w=wm[s];return `<tr><td>${s}<br>to ${w.end}</td><td>${money(w.total)}</td><td>${w.days}</td><td>${money(w.total/w.days)}</td></tr>`;}).join("");
+const mm={};db.business.forEach(x=>{const m=x.date.slice(0,7);if(!mm[m])mm[m]={total:0,days:0};mm[m].total+=Number(x.earning||0);mm[m].days++;});document.getElementById("monthlyHistory").innerHTML=Object.keys(mm).sort((a,b)=>b.localeCompare(a)).map(m=>`<tr><td>${m}</td><td>${money(mm[m].total)}</td><td>${mm[m].days}</td></tr>`).join("");
+const lifetimeGross=db.business.reduce((a,x)=>a+Number(x.earning||0),0),lifetimePayout=db.payouts.reduce((a,x)=>a+Number(x.amount||0),0),totalExpected=db.payouts.reduce((a,x)=>a+earningsBetween(x.weekStart,x.weekEnd),0);document.getElementById("lifetimeGross").textContent=money(lifetimeGross);document.getElementById("lifetimePayout").textContent=money(lifetimePayout);document.getElementById("outstanding").textContent=money(Math.max(0,totalExpected-lifetimePayout));document.getElementById("daysWorked").textContent=db.business.length;
+document.getElementById("payoutHistory").innerHTML=db.payouts.slice().sort((a,b)=>b.weekEnd.localeCompare(a.weekEnd)).map(x=>{const expected=earningsBetween(x.weekStart,x.weekEnd),difference=Number(x.amount||0)-expected;return `<tr><td>${x.weekStart}<br>to ${x.weekEnd}</td><td>${money(expected)}</td><td>${money(x.amount)}</td><td>${money(difference)}</td></tr>`;}).join("");renderPayoutPreview();}
+function backup(){const blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="anirudh-os-backup.json";a.click();URL.revokeObjectURL(url);}
+function restore(){const file=document.getElementById("restoreFile").files[0];if(!file){alert("Select a backup file first");return;}const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);if(!Array.isArray(data.business)||!Array.isArray(data.study)||!Array.isArray(data.fitness))throw Error("Invalid backup");if(!Array.isArray(data.payouts))data.payouts=[];if(!confirm("Replace current data with selected backup?"))return;db=data;persist();alert("Backup restored successfully!");}catch(e){alert("Invalid backup file");}};reader.readAsText(file);}
+render();
+</script>
+</body>
+</html>
